@@ -17,7 +17,7 @@ export class HomePage {
   enviar(){
     let m = {
       texto: this.mensagem,
-      data: new Date()
+      data: new Date() //teste
     };
     this.lista.push(m).then(() => {
       this.mensagem = "";
