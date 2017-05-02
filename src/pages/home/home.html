@@ -7,20 +7,36 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label floating>Mensagem</ion-label>
-      <ion-input type="text" [(ngModel)]="mensagem"></ion-input>
-    </ion-item>
-    <ion-item>
-      <button ion-button (click)="enviar()">Enviar</button>
-    </ion-item>
-    <ion-item *ngFor="let item of lista | async">
-      <p>{{item.texto}}</p>
-      <ion-note item-right>
-        {{item.data | date:'HH:mm'}}
-      </ion-note>
-    </ion-item>
-  </ion-list>
+
+<ion-content theme>
+  <div padding class="chat-view" id="chat-view">
+    <div class="messages">
+      <div class="chat_message_wrapper" *ngFor="let item of lista | async" [ngClass]="{'chat_message_right': chat.fromProfessionalId == appointment.professional.id}">
+        <ul class="chat_message">
+          <li>
+            <span>{{item.texto}}</span>
+            <span class="timestamp">{{item.datetime | date:'HH:mm'}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="envia">
+    <ion-list>
+
+      <ion-item class="caixa">
+        <ion-input type="text" [(ngModel)]="mensagem" class="men"></ion-input>
+      </ion-item>
+
+      <ion-item class="bolinha">
+        <ion-icon name="send" (click)="enviar()"></ion-icon>
+      </ion-item>
+
+    </ion-list>
+  </div>
+
+
 </ion-content>
